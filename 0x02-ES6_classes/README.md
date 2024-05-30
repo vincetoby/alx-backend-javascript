@@ -176,7 +176,228 @@ bob@dylan:~$
 
 </pre></code>
 
-## [
+## [6-sky_high.js](./6-sky_high.js)
+Import Building from 5-building.js.
+
+Implement a class named SkyHighBuilding that extends from Building:
+
+    Constructor attributes:
+        sqft (Number) (must be assigned to the parent class Building)
+        floors (Number)
+    Each attribute must be stored in an “underscore” attribute version (ex: name is stored in _name)
+    Implement a getter for each attribute.
+    Override the method named evacuationWarningMessage and return the following string Evacuate slowly the NUMBER_OF_FLOORS floors.
+<pre><code>
+bob@dylan:~$ cat 6-main.js
+import SkyHighBuilding from './6-sky_high.js';
+
+const building = new SkyHighBuilding(140, 60);
+console.log(building.sqft);
+console.log(building.floors);
+console.log(building.evacuationWarningMessage());
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 6-main.js
+140
+60
+Evacuate slowly the 60 floors
+bob@dylan:~$
+</pre></code>
+
+## [7-airport.js](./7-airport.js)
+Implement a class named Airport:
+
+    Constructor attributes:
+        name (String)
+        code (String)
+    Each attribute must be stored in an “underscore” attribute version (ex: name is stored in _name)
+    The default string description of the class should return the airport code (example below).
+<pre><code>
+bob@dylan:~$ cat 7-main.js
+import Airport from "./7-airport.js";
+
+const airportSF = new Airport('San Francisco Airport', 'SFO');
+console.log(airportSF);
+console.log(airportSF.toString());
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 7-main.js
+Airport [SFO] { _name: 'San Francisco Airport', _code: 'SFO' }
+[object SFO]
+bob@dylan:~$
+
+</pre></code>
+
+## [8-hbtn_class.js](./8-hbtn_class.js)
+Implement a class named HolbertonClass:
+
+    Constructor attributes:
+        size (Number)
+        location (String)
+    Each attribute must be stored in an “underscore” attribute version (ex: name is stored in _name)
+    When the class is cast into a Number, it should return the size.
+    When the class is cast into a String, it should return the location.
+<pre><code>
+bob@dylan:~$ cat 8-main.js
+import HolbertonClass from "./8-hbtn_class.js";
+
+const hc = new HolbertonClass(12, "Mezzanine")
+console.log(Number(hc));
+console.log(String(hc));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 8-main.js
+12
+Mezzanine
+bob@dylan:~$
+
+</pre></code>
+
+
+## [9-hoisting.js](./9-hoisting.js)
+Fix this code and make it work.
+<pre><code>
+const class2019 = new HolbertonClass(2019, 'San Francisco');
+const class2020 = new HolbertonClass(2020, 'San Francisco');
+
+export class HolbertonClass {
+  constructor(year, location) {
+    this._year = year;
+    this._location = location;
+  }
+
+  get year() {
+    return this._year;
+  }
+
+  get location() {
+    return this._location;
+  }
+}
+
+const student1 = new StudentHolberton('Guillaume', 'Salva', class2020);
+const student2 = new StudentHolberton('John', 'Doe', class2020);
+const student3 = new StudentHolberton('Albert', 'Clinton', class2019);
+const student4 = new StudentHolberton('Donald', 'Bush', class2019);
+const student5 = new StudentHolberton('Jason', 'Sandler', class2019);
+
+export class StudentHolberton {
+  constructor(firstName, lastName) {
+    this._firstName = firstName;
+    this._lastName = lastName;
+    this._holbertonClass = holbertonClass;
+  }
+
+  get fullName() {
+    return `${this._firstName} ${this._lastName}`;
+  }
+
+  get holbertonClass() {
+    return this.holbertonClass;
+  }
+
+  get fullStudentDescription() {
+    return `${self._firstName} ${self._lastName} - ${self._holbertonClass.year} - ${self._holbertonClass.location}`;
+  }
+}
+
+
+export const listOfStudents = [student1, student2, student3, student4, student5];
+</pre></code>
+Result:
+<pre><code>
+bob@dylan:~$ cat 9-main.js
+import listOfStudents from "./9-hoisting.js";
+
+console.log(listOfStudents);
+
+const listPrinted = listOfStudents.map(
+    student => student.fullStudentDescription
+);
+
+console.log(listPrinted)
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 9-main.js
+[
+  StudentHolberton {
+    _firstName: 'Guillaume',
+    _lastName: 'Salva',
+    _holbertonClass: HolbertonClass { _year: 2020, _location: 'San Francisco' }
+  },
+  StudentHolberton {
+    _firstName: 'John',
+    _lastName: 'Doe',
+    _holbertonClass: HolbertonClass { _year: 2020, _location: 'San Francisco' }
+  },
+  StudentHolberton {
+    _firstName: 'Albert',
+    _lastName: 'Clinton',
+    _holbertonClass: HolbertonClass { _year: 2019, _location: 'San Francisco' }
+  },
+  StudentHolberton {
+    _firstName: 'Donald',
+    _lastName: 'Bush',
+    _holbertonClass: HolbertonClass { _year: 2019, _location: 'San Francisco' }
+  },
+  StudentHolberton {
+    _firstName: 'Jason',
+    _lastName: 'Sandler',
+    _holbertonClass: HolbertonClass { _year: 2019, _location: 'San Francisco' }
+  }
+]
+[
+  'Guillaume Salva - 2020 - San Francisco',
+  'John Doe - 2020 - San Francisco',
+  'Albert Clinton - 2019 - San Francisco',
+  'Donald Bush - 2019 - San Francisco',
+  'Jason Sandler - 2019 - San Francisco'
+]
+bob@dylan:~$
+
+
+</pre></code>
+
+
+## [10-car.js](./10-car.js)
+Implement a class named Car:
+
+    Constructor attributes:
+        brand (String)
+        motor (String)
+        color (String)
+    Each attribute must be stored in an “underscore” attribute version (ex: name is stored in _name)
+    Add a method named cloneCar. This method should return a new object of the class.
+
+Hint: Symbols in ES6
+<pre><code>
+bob@dylan:~$ cat 10-main.js
+import Car from "./10-car.js";
+
+class TestCar extends Car {}
+
+const tc1 = new TestCar("Nissan", "Turbo", "Pink");
+const tc2 = tc1.cloneCar();
+
+console.log(tc1);
+console.log(tc1 instanceof TestCar);
+
+console.log(tc2);
+console.log(tc2 instanceof TestCar);
+
+console.log(tc1 == tc2);
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 10-main.js
+TestCar { _brand: 'Nissan', _motor: 'Turbo', _color: 'Pink' }
+true
+TestCar { _brand: undefined, _motor: undefined, _color: undefined }
+true
+false
+bob@dylan:~$
+
+</pre></code>
+
 ## [100-evcar.js](./100-evcar.js)
 Import Car from 10-car.js.
 
