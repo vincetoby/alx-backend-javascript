@@ -165,6 +165,62 @@ DataView {
 }
 bob@dylan:~$ 
 </pre></code>
+
+## [6-set.js](./6-set.js)
+Create a function named setFromArray that returns a Set from an array.
+
+It accepts an argument (Array, of any kind of element).
+<pre><code>
+bob@dylan:~$ cat 6-main.js
+import setFromArray from "./6-set.js";
+
+console.log(setFromArray([12, 32, 15, 78, 98, 15]));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 6-main.js
+Set { 12, 32, 15, 78, 98 }
+bob@dylan:~$
+</pre></code>
+
+## [7-has_array_values.js](./7-has_array_values.js)
+Create a function named hasValuesFromArray that returns a boolean if all the elements in the array exist within the set.
+
+It accepts two arguments: a set (Set) and an array (Array).
+<pre><code>
+bob@dylan:~$ cat 7-main.js
+import hasValuesFromArray from "./7-has_array_values.js";
+
+console.log(hasValuesFromArray(new Set([1, 2, 3, 4, 5]), [1]));
+console.log(hasValuesFromArray(new Set([1, 2, 3, 4, 5]), [10]));
+console.log(hasValuesFromArray(new Set([1, 2, 3, 4, 5]), [1, 10]));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 7-main.js
+true
+false
+false
+bob@dylan:~$
+</pre></code>
+
+## [8-clean_set.js](./8-clean_set.js)
+Create a function named cleanSet that returns a string of all the set values that start with a specific string (startString).
+
+It accepts two arguments: a set (Set) and a startString (String).
+
+When a value starts with startString you only append the rest of the string. The string contains all the values of the set separated by -.
+<pre><code>
+bob@dylan:~$ cat 8-main.js
+import cleanSet from "./8-clean_set.js";
+
+console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), 'bon'));
+console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), ''));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 8-main.js
+jovi-aparte-appetit
+
+bob@dylan:~$
+</pre></code>
 ## [100-weak.js](./100-weak.js)
 Export a const instance of WeakMap and name it weakMap.
 
