@@ -221,6 +221,70 @@ jovi-aparte-appetit
 
 bob@dylan:~$
 </pre></code>
+
+## [9-groceries_list.js](./9-groceries_list.js)
+Create a function named groceriesList that returns a map of groceries with the following items (name, quantity):
+
+Apples, 10
+Tomatoes, 10
+Pasta, 1
+Rice, 1
+Banana, 5
+
+Result:
+<pre><code>
+bob@dylan:~$ cat 9-main.js
+import groceriesList from "./9-groceries_list.js";
+
+console.log(groceriesList());
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 9-main.js
+Map {
+  'Apples' => 10,
+  'Tomatoes' => 10,
+  'Pasta' => 1,
+  'Rice' => 1,
+  'Banana' => 5
+}
+bob@dylan:~$
+</pre></code>
+## [10-update_uniq_items.js](./10-update_uniq_items.js)
+Create a function named updateUniqueItems that returns an updated map for all items with initial quantity at 1.
+
+It should accept a map as an argument. The map it accepts for argument is similar to the map you create in the previous task.
+
+For each entry of the map where the quantity is 1, update the quantity to 100. If updating the quantity is not possible (argument is not a map) the error Cannot process should be thrown.
+<pre><code>
+bob@dylan:~$ cat 10-main.js
+import updateUniqueItems from "./10-update_uniq_items.js";
+import groceriesList from "./9-groceries_list.js";
+
+const map = groceriesList();
+console.log(map);
+
+updateUniqueItems(map)
+console.log(map);
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 10-main.js
+Map {
+  'Apples' => 10,
+  'Tomatoes' => 10,
+  'Pasta' => 1,
+  'Rice' => 1,
+  'Banana' => 5
+}
+Map {
+  'Apples' => 10,
+  'Tomatoes' => 10,
+  'Pasta' => 100,
+  'Rice' => 100,
+  'Banana' => 5
+}
+bob@dylan:~$
+</pre></code>
+
 ## [100-weak.js](./100-weak.js)
 Export a const instance of WeakMap and name it weakMap.
 
